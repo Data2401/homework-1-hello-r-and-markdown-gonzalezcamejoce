@@ -42,7 +42,7 @@ dino_data %>%
 
 ### Exercise 3
 
-(Add code and narrative as needed. Note that the R chunks are labeled with `plot-star` and `cor-star` to provide spaces to place the code for plotting and calculating the correlation coefficient. To finish, remember to clean up the narrative by removing these instructions.)
+We plot y vs x for the start dataset.
 
 
 
@@ -52,7 +52,7 @@ dino_data %>%
 
 ```
 
-I'm some text, you should replace me with more meaningful text...
+Then we calculate the correlation coefficient between x and y
  
 ```{r cor-star}
 dino_data %>%
@@ -62,18 +62,28 @@ dino_data %>%
 
 ### Exercise 4
 
-(Add code and narrative as needed. Note that two R chunks are given but they are not labeled. Use the convention from above to name them appropriately.)
+How this value compare to the r of dino?
 
 ```{r}
-
+dino_data %>%
+  summarize(r = plot(x,y))
 
 ```
 
 ```{r}
-
+dino_data %>%
+  summarize(r = cor(x,y))
 
 ```
 
 ### Exercise 5
 
 (Add code and narrative as needed. To add R chunks either type out the backticks, curly braces, and the letter `r` or use the Insert chunk button above, with the green +C.)
+```{r}
+ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+ geom_point()+ facet_wrap(~ dataset, ncol = 3) + theme(legend.position = "none")
+
+datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarize(r = cor(x, y))
+```
+
